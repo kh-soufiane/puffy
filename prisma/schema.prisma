@@ -12,6 +12,26 @@ datasource db {
 model UserPuffy {
   id    String @id @unique
   email String @unique
+  File  File[]
+}
+
+enum UploadStatus {
+  PENDING
+  PROCESSING
+  FAILED
+  SUCCESS
+}
+
+model File {
+  id           String       @id @default(cuid())
+  name         String
+  uploadStatus UploadStatus @default(PENDING)
+  url          String
+  key          String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  UserPuffy    UserPuffy?   @relation(fields: [userPuffyId], references: [id])
+  userPuffyId  String?
 }
 
 //Database of kadelec application
