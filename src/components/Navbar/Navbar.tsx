@@ -11,6 +11,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Montserrat } from "next/font/google";
 import UserAccountNav from "./UserAccountNav";
+import MobileNav from "./MobileNav";
 
 const montserrat = Montserrat({
   weight: "600",
@@ -38,6 +39,7 @@ const Navbar = () => {
           </Link>
 
           {/*TODO: mobile navbar */}
+          <MobileNav isAuth={!!user} />
 
           <div className="hidden items-center space-x-4 sm:flex">
             {!user ? (
